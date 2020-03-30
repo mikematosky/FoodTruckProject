@@ -8,31 +8,31 @@ public class FoodTruckProg {
 	public static void main(String[] args) {
 		Scanner scan= new Scanner(System.in);
 		FoodTruck[] fT= new FoodTruck[5];
-		int counter=0; //counter for the while loop to populate the array
 		double rating; //holder variable for creating a Truck
 		String name, food; //holder variables for creating a Truck
 		
-		while(counter < 5) {
+		
+		for(int i= 0; i < 5; i++) {
 			System.out.println("Please enter the name of the FoodTruck or \"quit\" to exit:");
-			name= scan.nextLine();
+			name= scan.next(); //skips this?
 			if(name.equalsIgnoreCase("quit")) {
+				i=6;
 				break;
 			}
 			else {
 				System.out.println("Please enter the food type (chicken, pizza, lemonade):");
-				food= scan.nextLine();
-				System.out.println("Please enter the food truck's rating: ");
+				food= scan.next();
+				System.out.println("Please enter the rating for "+name+" "+food+": ");
 				rating= scan.nextDouble();
 				
 				FoodTruck foodT= new FoodTruck(name, food, rating);
-				fT[counter]= foodT;
-				
-				counter++;
+				fT[i]= foodT;
+				System.out.println(fT[i].toString());
 			}
-			
 		}
 		
 		int selection=0;
+
 		
 		while(selection!=4) {
 			System.out.println("==============Menu=============");
@@ -50,31 +50,39 @@ public class FoodTruckProg {
 				switch (selection) {
 				case 1:
 					for(int i=0; i < 5; i++) {
-						fT[i].toString();
+						if(fT[i]==null) {
+							break;
+						}
+						System.out.println(fT[i].toString());
 					}
 					break;
 				case 2:
 					double total=0;
 					double average=0.0;
 					int index1=0;
-					while(fT[index1].getRating() != null) {
-						total= total+ fT[index1].getRating();
-						index1++;
+					for(int i=0; i<5;i++) {
+						if(fT[i]==null) {
+							break;
+						}
+						total= total + fT[i].getRating();
+						average= total/(i+1);
 					}
-					average= total/ index1;
 					System.out.println("The average ratings for FoodTrucks is: "+average);
 					break;
 				case 3:
 					double highest=0;
 					int index2=0;
 					int highestIndex=0;
-					while(fT[index2].getRating() != null) {
-						if(fT[index2].getRating() >highest) {
-							highest= fT[index2].getRating();
-							highestIndex= index2;
+					for(int i=0; i < 5; i++) {
+						if(fT[i]==null) {
+							break;
 						}
-						index2++;
+						if(fT[i].getRating() > highest) {
+							highest= fT[i].getRating();
+							highestIndex= i;
+						}
 					}
+					
 					System.out.println("The highest rated restaurant is "+fT[highestIndex].getTruckName()+" with a rating of: "+fT[highestIndex].getRating());
 					break;
 				case 4:

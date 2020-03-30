@@ -7,7 +7,7 @@ public class FoodTruck {
 	private Double rating;
 	
 	private int truckID;
-	public int currentID=111; 
+	public static int currentID=111; 
 	private int setID() {
 		return currentID++;
 	}
