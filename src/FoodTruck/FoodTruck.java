@@ -4,7 +4,7 @@ public class FoodTruck {
 
 	private String truckName;
 	private String truckFood;
-	private double rating;
+	private Double rating;
 	
 	private int truckID;
 	public int currentID=111; 
@@ -19,6 +19,45 @@ public class FoodTruck {
 		this.rating= rating;
 		this.truckID= setID();
 		
+	}
+	
+	
+	
+	
+	
+	public String getTruckName() {
+		return truckName;
+	}
+
+
+	public void setTruckName(String truckName) {
+		this.truckName = truckName;
+	}
+
+
+	public String getTruckFood() {
+		return truckFood;
+	}
+
+
+	public void setTruckFood(String truckFood) {
+		this.truckFood = truckFood;
+	}
+
+
+	public Double getRating() {
+		return rating;
+	}
+
+
+	public void setRating(Double rating) {
+		this.rating = rating;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Name: "+this.truckName+" || Food Type: "+this.truckFood+" || Rating:  "+this.rating+" || ID Number: "+this.truckID;
 	}
 	
 	
